@@ -8,6 +8,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Collapsible } from "@/components/ui/collapsible";
 import { WebBadge } from "@/components/web-badge";
+import { TestIDs } from "@/constants/test-ids";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -34,13 +35,14 @@ export default function TabTwoScreen() {
 
   return (
     <ScrollView
+      testID={TestIDs.explore.scroll}
       style={[styles.scrollView, { backgroundColor: theme.background }]}
       contentInset={insets}
       contentContainerStyle={[styles.contentContainer, contentPlatformStyle]}
     >
-      <ThemedView style={styles.container}>
+      <ThemedView testID={TestIDs.explore.screen} style={styles.container}>
         <ThemedView style={styles.titleContainer}>
-          <ThemedText testID="txt_explore_title" type="subtitle">
+          <ThemedText testID={TestIDs.explore.title} type="subtitle">
             Explore
           </ThemedText>
           <ThemedText style={styles.centerText} themeColor="textSecondary">
@@ -49,7 +51,10 @@ export default function TabTwoScreen() {
 
           <ExternalLink href="https://docs.expo.dev" asChild>
             <Pressable
-              testID="btn_expo_docs"
+              testID={TestIDs.explore.btnDocs}
+              accessibilityRole="button"
+              accessibilityLabel="Expo documentation"
+              collapsable={false}
               style={({ pressed }) => pressed && styles.pressed}
             >
               <ThemedView type="backgroundElement" style={styles.linkButton}>
@@ -69,7 +74,10 @@ export default function TabTwoScreen() {
         </ThemedView>
 
         <ThemedView style={styles.sectionsWrapper}>
-          <Collapsible title="File-based routing">
+          <Collapsible
+            testID={TestIDs.explore.collapsibleRouting}
+            title="File-based routing"
+          >
             <ThemedText type="small">
               This app has two screens:{" "}
               <ThemedText type="code">src/app/index.tsx</ThemedText> and{" "}
@@ -85,7 +93,10 @@ export default function TabTwoScreen() {
             </ExternalLink>
           </Collapsible>
 
-          <Collapsible title="Android, iOS, and web support">
+          <Collapsible
+            testID={TestIDs.explore.collapsiblePlatforms}
+            title="Android, iOS, and web support"
+          >
             <ThemedView
               type="backgroundElement"
               style={styles.collapsibleContent}
@@ -103,7 +114,10 @@ export default function TabTwoScreen() {
             </ThemedView>
           </Collapsible>
 
-          <Collapsible title="Images">
+          <Collapsible
+            testID={TestIDs.explore.collapsibleImages}
+            title="Images"
+          >
             <ThemedText type="small">
               For static images, you can use the{" "}
               <ThemedText type="code">@2x</ThemedText> and{" "}
@@ -119,7 +133,10 @@ export default function TabTwoScreen() {
             </ExternalLink>
           </Collapsible>
 
-          <Collapsible title="Light and dark mode components">
+          <Collapsible
+            testID={TestIDs.explore.collapsibleThemes}
+            title="Light and dark mode components"
+          >
             <ThemedText type="small">
               This template has light and dark mode support. The{" "}
               <ThemedText type="code">useColorScheme()</ThemedText> hook lets
@@ -131,7 +148,10 @@ export default function TabTwoScreen() {
             </ExternalLink>
           </Collapsible>
 
-          <Collapsible title="Animations">
+          <Collapsible
+            testID={TestIDs.explore.collapsibleAnimations}
+            title="Animations"
+          >
             <ThemedText type="small">
               This template includes an example of an animated component. The{" "}
               <ThemedText type="code">

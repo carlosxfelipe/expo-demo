@@ -23,6 +23,9 @@ export function Collapsible({
       <Pressable
         testID={headerTestId}
         accessibilityRole="button"
+        accessibilityLabel={title}
+        accessibilityState={{ expanded: isOpen }}
+        collapsable={false}
         style={({ pressed }) => [
           styles.heading,
           pressed && styles.pressedHeading,

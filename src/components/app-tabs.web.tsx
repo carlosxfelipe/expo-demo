@@ -9,6 +9,7 @@ import {
 import { SymbolView } from "expo-symbols";
 import { Pressable, StyleSheet, useColorScheme, View } from "react-native";
 
+import { TestIDs } from "@/constants/test-ids";
 import { Colors, MaxContentWidth, Spacing } from "@/constants/theme";
 
 import { ExternalLink } from "./external-link";
@@ -22,10 +23,17 @@ export default function AppTabs() {
       <TabList asChild>
         <CustomTabList>
           <TabTrigger name="home" href="/" asChild>
-            <TabButton>Home</TabButton>
+            <TabButton testID={TestIDs.tabs.home} accessibilityLabel="Home">
+              Home
+            </TabButton>
           </TabTrigger>
           <TabTrigger name="explore" href="/explore" asChild>
-            <TabButton>Explore</TabButton>
+            <TabButton
+              testID={TestIDs.tabs.explore}
+              accessibilityLabel="Explore"
+            >
+              Explore
+            </TabButton>
           </TabTrigger>
         </CustomTabList>
       </TabList>
@@ -72,7 +80,12 @@ export function CustomTabList(props: TabListProps) {
         {props.children}
 
         <ExternalLink href="https://docs.expo.dev" asChild>
-          <Pressable style={styles.externalPressable}>
+          <Pressable
+            testID={TestIDs.tabs.docs}
+            accessibilityRole="button"
+            accessibilityLabel="Docs"
+            style={styles.externalPressable}
+          >
             <ThemedText type="link">Docs</ThemedText>
             <SymbolView
               tintColor={colors.text}

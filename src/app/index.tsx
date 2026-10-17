@@ -15,6 +15,7 @@ import { HintRow } from "@/components/hint-row";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { WebBadge } from "@/components/web-badge";
+import { TestIDs } from "@/constants/test-ids";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -43,9 +44,10 @@ export default function HomeScreen() {
   const theme = useTheme();
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView testID={TestIDs.home.screen} style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ScrollView
+          testID={TestIDs.home.scroll}
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
@@ -53,7 +55,7 @@ export default function HomeScreen() {
           <ThemedView style={styles.heroSection}>
             <AnimatedIcon />
             <ThemedText
-              testID="txt_welcome_title"
+              testID={TestIDs.home.welcome}
               type="title"
               style={styles.title}
             >
@@ -61,27 +63,31 @@ export default function HomeScreen() {
             </ThemedText>
           </ThemedView>
 
-          <ThemedText testID="txt_get_started" type="code" style={styles.code}>
+          <ThemedText
+            testID={TestIDs.home.getStarted}
+            type="code"
+            style={styles.code}
+          >
             get started
           </ThemedText>
 
           <ThemedView
-            testID="container_steps"
+            testID={TestIDs.home.containerSteps}
             type="backgroundElement"
             style={styles.stepContainer}
           >
             <HintRow
-              testID="hint_editing"
+              testID={TestIDs.home.hintEditing}
               title="Try editing"
               hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
             />
             <HintRow
-              testID="hint_devtools"
+              testID={TestIDs.home.hintDevtools}
               title="Dev tools"
               hint={getDevMenuHint()}
             />
             <HintRow
-              testID="hint_fresh_start"
+              testID={TestIDs.home.hintFreshStart}
               title="Fresh start"
               hint={<ThemedText type="code">npm run reset-project</ThemedText>}
             />
@@ -89,11 +95,11 @@ export default function HomeScreen() {
 
           {/* Seção Interativa para testes E2E do AndroFlow */}
           <ThemedView
-            testID="playground_card"
+            testID={TestIDs.home.playgroundCard}
             type="backgroundElement"
             style={styles.playgroundContainer}
           >
-            <ThemedText testID="txt_playground_title" type="subtitle">
+            <ThemedText testID={TestIDs.home.playgroundTitle} type="subtitle">
               AndroFlow Playground
             </ThemedText>
             <ThemedText
@@ -105,7 +111,8 @@ export default function HomeScreen() {
             </ThemedText>
 
             <TextInput
-              testID="input_user_name"
+              testID={TestIDs.home.inputUserName}
+              accessibilityLabel="Campo de entrada de texto"
               style={[
                 styles.input,
                 {
@@ -122,7 +129,7 @@ export default function HomeScreen() {
 
             {inputText ? (
               <ThemedText
-                testID="txt_preview"
+                testID={TestIDs.home.previewText}
                 type="smallBold"
                 style={styles.previewText}
               >
@@ -132,7 +139,10 @@ export default function HomeScreen() {
 
             <View style={styles.counterRow}>
               <Pressable
-                testID="btn_decrement"
+                testID={TestIDs.home.btnDecrement}
+                accessibilityRole="button"
+                accessibilityLabel="Decrementar contador"
+                collapsable={false}
                 style={styles.actionButton}
                 onPress={() => setCount((c) => Math.max(0, c - 1))}
               >
@@ -140,7 +150,7 @@ export default function HomeScreen() {
               </Pressable>
 
               <ThemedText
-                testID="txt_counter_value"
+                testID={TestIDs.home.counterValue}
                 type="default"
                 style={styles.counterText}
               >
@@ -148,7 +158,10 @@ export default function HomeScreen() {
               </ThemedText>
 
               <Pressable
-                testID="btn_increment"
+                testID={TestIDs.home.btnIncrement}
+                accessibilityRole="button"
+                accessibilityLabel="Incrementar contador"
+                collapsable={false}
                 style={styles.actionButton}
                 onPress={() => setCount((c) => c + 1)}
               >
@@ -157,7 +170,10 @@ export default function HomeScreen() {
 
               {count > 0 && (
                 <Pressable
-                  testID="btn_reset_counter"
+                  testID={TestIDs.home.btnResetCounter}
+                  accessibilityRole="button"
+                  accessibilityLabel="Zerar contador"
+                  collapsable={false}
                   style={styles.actionButtonSecondary}
                   onPress={() => setCount(0)}
                 >

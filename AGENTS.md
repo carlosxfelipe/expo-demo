@@ -39,3 +39,30 @@ Docs: https://docs.expo.dev/eas/index.md
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+
+## Testability and Maestro / AndroFlow Guidelines
+
+When creating or editing screens and components in this repository:
+
+1. **Centralized Registry (`testID`):**
+   - Always assign a `testID` to interactive components (buttons, inputs, tabs, links, collapsibles, and headers).
+   - Register new IDs in `src/constants/test-ids.ts`.
+   - Follow the naming convention:
+     - `tab_*` (tabs and bottom navigation)
+     - `screen_*` (root screen containers)
+     - `scroll_*` (ScrollView or FlatList)
+     - `btn_*` (buttons and clickable elements)
+     - `txt_*` (static or dynamic texts validated in tests)
+     - `input_*` (form inputs and text fields)
+     - `container_*` (structural cards, wrappers or sections)
+     - `hint_*` (informational hints or tutorial items)
+     - `collapsible_*` (accordions / collapsible headers & content)
+
+2. **View Flattening (`collapsable={false}`):**
+   - On Android, React Native removes plain Views without visual styling from the native accessibility hierarchy.
+   - `<ThemedView>` automatically sets `collapsable={false}` when `testID` is passed.
+   - For custom or core `<View>` and `<Pressable>` with `testID`, ensure `collapsable={false}` is present.
+
+3. **Tab Navigation:**
+   - In tab triggers (`NativeTabs.Trigger` and `TabButton`), always configure `testID` and `accessibilityLabel` to enable reliable selection by `id` or label in automated tests.
+

@@ -18,7 +18,11 @@ export function HintRow({
   testID,
 }: HintRowProps) {
   return (
-    <View testID={testID} style={styles.stepRow}>
+    <View
+      testID={testID}
+      collapsable={testID ? false : undefined}
+      style={styles.stepRow}
+    >
       <ThemedText type="small">{title}</ThemedText>
       <ThemedView type="backgroundSelected" style={styles.codeSnippet}>
         <ThemedText themeColor="textSecondary">{hint}</ThemedText>
