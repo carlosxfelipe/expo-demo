@@ -23,6 +23,7 @@ wakeUp: true
 # 1. Garante estabilidade: acorda a tela e remove eventuais alertas do sistema
 - wakeUp
 - dismissSystemDialogs
+- sleep: "500ms"
 - tapOn:
     contentDesc: "Home"
 

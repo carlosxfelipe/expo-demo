@@ -23,6 +23,7 @@ env:
 # === ETAPA 1: Preparação e Estabilidade ===
 - wakeUp
 - dismissSystemDialogs
+- sleep: "500ms"
 - tapOn:
     contentDesc: "Home"
 

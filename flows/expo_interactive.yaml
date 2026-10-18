@@ -28,6 +28,7 @@ env:
 # 1. Garante tela acordada e estabilidade
 - wakeUp
 - dismissSystemDialogs
+- sleep: "500ms"
 
 # 2. Garante que está na aba Home e valida a seção do playground
 - tapOn:

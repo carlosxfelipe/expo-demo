@@ -106,7 +106,7 @@ export function AnimatedIcon() {
   return (
     <View style={styles.iconContainer}>
       <Animated.View
-        entering={glowKeyframe.duration(60 * 1000 * 4)}
+        entering={logoKeyframe.duration(DURATION)}
         style={styles.glow}
       >
         <Image
