@@ -43,4 +43,5 @@ example
 /android
 
 # test artifacts / reports
-artifacts/
+artifacts/*
+!artifacts/.gitkeep
